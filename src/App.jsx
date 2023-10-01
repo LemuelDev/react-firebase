@@ -15,6 +15,7 @@ function App() {
   const [newMovieTitle, setNewMovieTitle] = useState('')
   const [newMovieRating, setNewMovieRating] = useState(0)
   const [newMovieReleaseDate, setnewMovieReleaseDate] = useState(0)
+  const [isLogin, setIsLogin] = useState(false)
 
   // upload file
   const [fileUpload, setFileUpload] = useState(null)
@@ -75,7 +76,7 @@ function App() {
 
   return (
     <>
-     <Auth/>
+     <Auth movieList={movieList} setIsLogin={setIsLogin} isLogin={isLogin}/>
 
      <div className='create-movie'>
 
@@ -108,7 +109,7 @@ function App() {
 
      <div className='render-movie'>
       <h4>Render The Data using Map</h4>
-      {movieList.map((movie) => (
+      {isLogin && movieList.map((movie) => (
         <Render 
         key={movie.id}
         movie={movie}
